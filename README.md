@@ -1,24 +1,31 @@
-# README
+# mogu-mogu
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+**mogu-mogu** is a recipe-sharing app with a by-ingredient search engine and food suggestions.
 
-Things you may want to cover:
+## Features
+* Create a recipe
+* Bookmark recipes from others
+* Save your current pantry/fridge
+* Get suggestions about what to prepare with your current ingredients
+* Search recipes by ingredient(s)
 
-* Ruby version
+## Technical specs
+### Ruby version
+**3.1.0**
 
-* System dependencies
+### Rails version
+**7.0.1**
 
-* Configuration
+### System dependencies
 
-* Database creation
+### Configuration
 
-* Database initialization
+### Database creation
 
-* How to run the test suite
+### Database initialization
 
-* Services (job queues, cache servers, search engines, etc.)
+### How to run the test suite
 
-* Deployment instructions
+### Services (job queues, cache servers, search engines, etc.)
 
-* ...
+### Deployment instructions
