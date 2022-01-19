@@ -12,7 +12,7 @@
 #       Install PostgreSQL and put its /bin directory on your path.
 #
 # Configure Using Gemfile
-# gem "pg"
+# gem 'pg'
 #
 default: &default
   adapter: postgresql
@@ -23,16 +23,16 @@ default: &default
 
 development:
   <<: *default
-  database: mogu_mogu_development
+  database: <%= ENV['db_database'] %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user running Rails.
-  #username: mogu_mogu
+  username: <%= ENV['db_username'] %>
 
   # The password associated with the postgres role (username).
-  #password:
+  password: <%= ENV['db_password'] %>
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -57,7 +57,9 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: mogu_mogu_test
+  database: <%= ENV['db_database'] %>
+  username: <%= ENV['db_username'] %>
+  password: <%= ENV['db_password'] %>
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -74,13 +76,13 @@ test:
 # URL environment variable explicitly:
 #
 #   production:
-#     url: <%= ENV["MY_APP_DATABASE_URL"] %>
+#     url: <%= ENV['MY_APP_DATABASE_URL'] %>
 #
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
 production:
   <<: *default
-  database: mogu_mogu_production
-  username: mogu_mogu
-  password: <%= ENV["MOGU_MOGU_DATABASE_PASSWORD"] %>
+  database: <%= ENV['db_database'] %>
+  username: <%= ENV['db_username'] %>
+  password: <%= ENV['db_password'] %>
