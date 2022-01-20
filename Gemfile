@@ -18,7 +18,7 @@ gem "jsbundling-rails"
 gem "sprockets-rails"
 gem "stimulus-rails"
 gem "turbo-rails"
-# gem "sassc-rails"
+gem "sassc-rails"
 
 gem "jbuilder"
 # gem "redis", "~> 4.0"
