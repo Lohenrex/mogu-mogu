@@ -18,7 +18,6 @@ gem "figaro"
 gem "pundit"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
-gem 'sendgrid-ruby'
 
 gem "cssbundling-rails"
 gem "jsbundling-rails"
