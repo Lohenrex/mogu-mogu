@@ -157,6 +157,8 @@ GEM
     public_suffix (4.0.6)
     puma (5.5.2)
       nio4r (~> 2.0)
+    pundit (2.1.1)
+      activesupport (>= 3.0.0)
     racc (1.6.0)
     rack (2.2.3)
     rack-mini-profiler (2.3.3)
@@ -277,13 +279,14 @@ DEPENDENCIES
   capybara
   cssbundling-rails
   debug
-  devise (~> 4.8)
+  devise
   factory_bot_rails
-  figaro (~> 1.2)
+  figaro
   jbuilder
   jsbundling-rails
   pg (~> 1.1)
   puma (~> 5.0)
+  pundit
   rack-mini-profiler
   rails (~> 7.0.1)
   rubocop
