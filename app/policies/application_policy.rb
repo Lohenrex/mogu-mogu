@@ -68,4 +68,8 @@ class ApplicationPolicy
   def owner?
     resource.user == user
   end
+
+  def guest?
+    user.guest?
+  end
 end
