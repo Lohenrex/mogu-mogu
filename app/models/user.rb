@@ -6,7 +6,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable
 
-  validates_uniqueness_of :name
+  validates :name, uniqueness: true
 
   enum :role, { admin: 1, premium: 2, free: 3 }
 end
