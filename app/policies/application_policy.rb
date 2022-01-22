@@ -69,7 +69,15 @@ class ApplicationPolicy
     resource.user == user
   end
 
-  def guest?
-    user.guest?
+  def free?
+    user.free?
+  end
+
+  def premium?
+    user.premium?
+  end
+
+  def member?
+    user.free? || user.premium? || user.admin?
   end
 end
