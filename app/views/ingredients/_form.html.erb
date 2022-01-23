@@ -11,17 +11,30 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <label class="label">Name & category</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control">
+          <%= form.text_field :name, autofocus: true, class: "input" %>
+        </p>
+      </div>
+      <div class="field">
+        <div class="control">
+          <div class="select is-primary">
+            <%= form.select :category, Ingredient::CATEGORIES %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :category, style: "display: block" %>
-    <%= form.text_field :category %>
-  </div>
+  
 
-  <div>
-    <%= form.submit %>
+  <div class="actions has-text-right">
+    <%= link_to "Back to ingredients", ingredients_path, class: "button is-link" %>
+    <%= form.submit "Update", class: "button is-primary is-outlined" %>
   </div>
 <% end %>
