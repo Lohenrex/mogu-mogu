@@ -39,7 +39,7 @@
               <span class="icon" title="Admin tools">
                 <i class="fas fa-tools"></i>
               </span>
-            </a>
+            </a>            
 
             <div class="navbar-dropdown has-text-black">
               <a class="navbar-item" href="<%= users_path %>">
@@ -70,15 +70,15 @@
   <div class="hero-body">    
     <div class="container">
       <div class="column">
-        <h3 class="title has-text-white-ter has-text-right">Edit ingredient
+        <h3 class="title has-text-white-ter has-text-right">Edit user
         </h3>
         <div class="block">
-          <%= link_to "New ingredient", new_ingredient_path, class: "button is-success" %>
+          <%= link_to "New user", new_user_path, class: "button is-success" %>
         </div>
 
         <div class="columns">
           <div class="column box">
-            <%= render "form", ingredient: @ingredient %>
+            <%= render "form", user: @user %>
           </div>
         </div>
 
