@@ -1,55 +1,39 @@
-<section class="hero is-primary is-fullheight">
-  <div class="hero-head">
-    <nav class="navbar navbar">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="/">
-          <span class="icon title">
-            <i class="fas fa-pastafarianism"></i>
-          </span>
-          <span class="title">mogumogu</span>
-        </a>
-      </div>
-    </nav>
-  </div>
-  <div class="hero-body">
-    <div class="container has-text-centered">
-      <div class="column is-4 is-offset-4">
-        <h3 class="title has-text-white-ter">Sign in
-        </h3>
-        <hr class="login-hr">
-        <p class="subtitle has-text-white-ter">Jump right in! Welcome back.
-        </p>
-        <div class="box">
-          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-            <div class="field">
-              <div class="control">
-                <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Your Email", class: "input is-large" %>
-              </div>
-            </div>
-
-            <div class="field">
-              <div class="control">
-                <!-- <input class="input is-large" type="password" placeholder="Your Password"> -->
-                <%= f.password_field :password, autocomplete: "current-password", placeholder: "Your Password", class: "input is-large" %>
-              </div>
-            </div>
-
-            <% if devise_mapping.rememberable? %>            
-              <div class="field">
-                <label class="checkbox">
-                  <%= f.check_box :remember_me %>
-                  <%= f.label :remember_me %>
-                </label>
-              </div>
-            <% end %>
-
-            <div class="actions">
-              <%= f.submit "Sign in", class: "button is-primary is-outlined" %>
-            </div>
-          <% end %>
+<div class="container has-text-centered">
+  <div class="column is-4 is-offset-4">
+    <h3 class="title has-text-white-ter">Sign in
+    </h3>
+    <hr class="login-hr">
+    <p class="subtitle has-text-white-ter">Jump right in! Welcome back.
+    </p>
+    <div class="box">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="field">
+          <div class="control">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Your Email", class: "input is-large" %>
+          </div>
         </div>
-        <%= render "devise/shared/links" %>
-      </div>
+
+        <div class="field">
+          <div class="control">
+            <!-- <input class="input is-large" type="password" placeholder="Your Password"> -->
+            <%= f.password_field :password, autocomplete: "current-password", placeholder: "Your Password", class: "input is-large" %>
+          </div>
+        </div>
+
+        <% if devise_mapping.rememberable? %>            
+          <div class="field">
+            <label class="checkbox">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </label>
+          </div>
+        <% end %>
+
+        <div class="actions">
+          <%= f.submit "Sign in", class: "button is-primary is-outlined" %>
+        </div>
+      <% end %>
     </div>
+    <%= render "devise/shared/links" %>
   </div>
-</section>
+</div>
