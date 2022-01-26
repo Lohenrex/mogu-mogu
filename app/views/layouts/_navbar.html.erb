@@ -1,12 +1,12 @@
 <div class="hero-head">
   <nav class="navbar navbar">
     <div class="navbar-brand">
-      <a class="navbar-item" href="/">
+      <%= link_to("/", class: "navbar-item") do %>
         <span class="icon title">
           <i class="fas fa-pastafarianism"></i>
         </span>
         <span class="title">mogumogu</span>
-      </a>
+      <% end %>
       <span role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
