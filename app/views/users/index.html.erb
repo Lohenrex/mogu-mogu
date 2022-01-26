@@ -1,113 +1,45 @@
-<section class="hero is-primary is-fullheight">
-  <div class="hero-head">
-    <nav class="navbar navbar">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="/">
-          <span class="icon title">
-            <i class="fas fa-pastafarianism"></i>
-          </span>
-          <span class="title">mogumogu</span>
-        </a>
-        <span class="navbar-burger burger" data-target="navbarMenu">
-          <span>
-          </span>
-          <span>
-          </span>
-          <span>
-          </span>
-        </span>
-      </div>
-      <div id="navbarMenu" class="navbar-menu">
-        <div class="navbar-end">
+<div class="container">
+  <div class="column">
+    <h3 class="title has-text-white-ter has-text-right">
+      Users
+    </h3>
+    <hr class="login-hr">
+    <p class="subtitle has-text-white-ter has-text-right">
+      We already have <%= User.count %> users!
+    </p>
 
-          <a href="/inventory" class="navbar-item">
-            <span class="icon">
-              <i class="fas fa-cloud-meatball"></i>
-            </span>
-            My inventory
-          </a>
-
-          <span class="navbar-item">
-            <a href="<%= edit_user_registration_path %>">
-              <span>Hi, <i class="fas fa-user"></i> <%= current_user.name %>
-              </span>
-            </a>
-          </span>
-
-          <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">
-              <span class="icon" title="Admin tools">
-                <i class="fas fa-tools"></i>
-              </span>
-            </a>
-
-            <div class="navbar-dropdown has-text-black">
-              <a class="navbar-item" href="<%= users_path %>">
-                Users
-              </a>
-              <hr class="navbar-divider">
-              <div class="navbar-item has-text-primary has-text-weight-semibold">
-                Recipes & stuff
-              </div>
-
-              <a class="navbar-item" href="<%= ingredients_path %>">
-                Ingredients
-              </a>
-              <a class="navbar-item" href="#">
-                Recipes
-              </a>
-            </div>
-          </div>
-
-          <span class="navbar-item">
-            <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: 'button is-dark' %>
-          </span>
-
-        </div>
-      </div>
-    </nav>
-  </div>
-  <div class="hero-body">    
-    <div class="container">
-      <p style="color: green"><%= notice %></p>
-      <div class="column">
-        <h3 class="title has-text-white-ter has-text-right">Users
-        </h3>
-        <hr class="login-hr">
-        <p class="subtitle has-text-white-ter has-text-right">We already have <%= User.count %> users!
-        </p>
-
-        <div class="columns">
-          <div class="column box">
-            <table class="table is-striped is-hoverable has-text-centered is-fullwidth">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Role</th>
-                  <th>Updated at</th>
-                  <th>Created at</th>
-                  <th>Delete</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% @users.each do |user| %>
-                  <tr>
-                    <td class="has-text-primary"><%= link_to user.name, edit_user_path(user) %></td>
-                    <td><%= user.email %></td>
-                    <td><%= user.role %></td>
-                    <td><%= user.updated_at %></td>
-                    <td><%= user.created_at %></td>
-                    <td>
-                      <%= button_to "Destroy this ingredient", user, method: :delete, class: "delete is-danger", data: { confirm: "Are you REALLY sure?" } %></td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
+    <div class="columns">
+      <div class="column box">
+        <table class="table is-striped is-hoverable has-text-centered is-fullwidth">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Updated at</th>
+              <th>Created at</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td class="has-text-primary">
+                  <%= link_to user.name, edit_user_path(user) %>
+                </td>
+                <%= tag.td user.email %>
+                <%= tag.td user.role %>
+                <%= tag.td user.updated_at %>
+                <%= tag.td user.created_at %>
+                <td>
+                  <%= button_to "Destroy this ingredient", user, method: :delete, class: "delete is-danger", data: { confirm: "Are you REALLY sure?" } %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
       </div>
     </div>
+
   </div>
-</section>
+</div>
