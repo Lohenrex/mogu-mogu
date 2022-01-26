@@ -5,5 +5,4 @@ Rails.application.routes.draw do
   root "home#index"
   resources :ingredients
   resources :users
-  get "/inventory", to: "inventory#index"
 end
