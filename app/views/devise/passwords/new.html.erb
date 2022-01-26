@@ -1,24 +1,22 @@
-<div class="container has-text-centered">
-  <div class="column is-4 is-offset-4">
-    <h3 class="title has-text-white-ter">Forgot your password?
-    </h3>
-    <hr class="login-hr">
-    <p class="subtitle has-text-white-ter">We got your back. No prob.
-    </p>
-    <div class="box">
-      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
-        <div class="field">
-          <div class="control">
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Your Email", class: "input is-large" %>
-          </div>
+<div class="column is-4 is-offset-4 has-text-centered">
+  <h3 class="title has-text-white-ter">Forgot your password?
+  </h3>
+  <hr class="login-hr">
+  <p class="subtitle has-text-white-ter">We got your back. No prob.
+  </p>
+  <div class="box">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="field">
+        <div class="control">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Your Email", class: "input is-large" %>
         </div>
+      </div>
 
-        <div class="actions">
-          <%= f.submit "Send me reset password instructions", class: "button is-primary is-outlined" %>
-        </div>
-      <% end %>
-    </div>
-    <%= render "devise/shared/links" %>
+      <div class="actions">
+        <%= f.submit "Send me reset password instructions", class: "button is-primary is-outlined" %>
+      </div>
+    <% end %>
   </div>
+  <%= render "devise/shared/links" %>
 </div>
