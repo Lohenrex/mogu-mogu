@@ -87,6 +87,7 @@
                   <th>Role</th>
                   <th>Updated at</th>
                   <th>Created at</th>
+                  <th>Delete</th>
                 </tr>
               </thead>
               <tbody>
@@ -97,6 +98,8 @@
                     <td><%= user.role %></td>
                     <td><%= user.updated_at %></td>
                     <td><%= user.created_at %></td>
+                    <td>
+                      <%= button_to "Destroy this ingredient", user, method: :delete, class: "delete is-danger", data: { confirm: "Are you REALLY sure?" } %></td>
                   </tr>
                 <% end %>
               </tbody>
