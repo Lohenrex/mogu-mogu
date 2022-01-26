@@ -1,45 +1,42 @@
-<div class="container">
-  <div class="column">
-    <h3 class="title has-text-white-ter has-text-right">
-      Users
-    </h3>
-    <hr class="login-hr">
-    <p class="subtitle has-text-white-ter has-text-right">
-      We already have <%= User.count %> users!
-    </p>
+<div class="column">
+  <h3 class="title has-text-white-ter has-text-right">
+    Users
+  </h3>
+  <hr class="login-hr">
+  <p class="subtitle has-text-white-ter has-text-right">
+    We already have <%= User.count %> users!
+  </p>
 
-    <div class="columns">
-      <div class="column box">
-        <table class="table is-striped is-hoverable has-text-centered is-fullwidth">
-          <thead>
+  <div class="columns">
+    <div class="column box">
+      <table class="table is-striped is-hoverable has-text-centered is-fullwidth">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Updated at</th>
+            <th>Created at</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
             <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Role</th>
-              <th>Updated at</th>
-              <th>Created at</th>
-              <th>Delete</th>
+              <td class="has-text-primary">
+                <%= link_to user.name, edit_user_path(user) %>
+              </td>
+              <%= tag.td user.email %>
+              <%= tag.td user.role %>
+              <%= tag.td user.updated_at %>
+              <%= tag.td user.created_at %>
+              <td>
+                <%= button_to "Destroy this ingredient", user, method: :delete, class: "delete is-danger", data: { confirm: "Are you REALLY sure?" } %>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            <% @users.each do |user| %>
-              <tr>
-                <td class="has-text-primary">
-                  <%= link_to user.name, edit_user_path(user) %>
-                </td>
-                <%= tag.td user.email %>
-                <%= tag.td user.role %>
-                <%= tag.td user.updated_at %>
-                <%= tag.td user.created_at %>
-                <td>
-                  <%= button_to "Destroy this ingredient", user, method: :delete, class: "delete is-danger", data: { confirm: "Are you REALLY sure?" } %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+          <% end %>
+        </tbody>
+      </table>
     </div>
-
   </div>
 </div>
