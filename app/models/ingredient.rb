@@ -2,8 +2,4 @@
 
 class Ingredient < ApplicationRecord
   validates :name, uniqueness: true
-
-  CATEGORIES = %w[dairy fruits spices meats
-                  flour alcohol cereals liquids
-                  nuts vegetables other].map { |category| [category.capitalize, category] }.sort
 end

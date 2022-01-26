@@ -1,0 +1,42 @@
+id,name,category
+1,whole milk,dairy
+2,all-purpose flour,flour
+3,cake flour,flour
+4,egg,meats
+5,water,liquids
+6,soy sauce,spices
+7,strawberry,fruits
+8,raspberry,fruits
+9,cranberry,fruits
+10,blueberry,fruits
+11,almond,nuts
+12,peanut,nuts
+13,walnut,nuts
+14,butter,dairy
+15,unsalted butter,dairy
+16,sugar,spices
+17,salt,spices
+18,red wine,alcohol
+19,white wine,alcohol
+20,vodka,alcohol
+21,orange juice,liquids
+22,lemon juice,liquids
+23,lemon,fruits
+24,orange,fruits
+25,milk (any),dairy
+26,heavy whipping cream,dairy
+27,mint,vegetables
+28,celery,vegetables
+29,oatmeal,cereals
+30,oatmeal flour,flour
+31,yeast,other
+32,cheese,dairy
+33,sour cream,dairy
+34,cinnamon,spices
+35,tomato,vegetables
+36,onion,vegetables
+37,tortilla,other
+38,blue corn flour,flour
+39,chicken breast,meats
+40,pig feet,meats
+41,pig skin,meats
