@@ -24,10 +24,12 @@
         <tbody>
           <% @ingredients.each do |ingredient| %>
             <tr>
-              <td class="has-text-primary"><%= link_to ingredient.name, edit_ingredient_path(ingredient) %></td>
-              <td><%= ingredient.category %></td>
-              <td><%= ingredient.updated_at %></td>
-              <td><%= ingredient.created_at %></td>
+              <td class="has-text-primary">
+                <%= link_to ingredient.name, edit_ingredient_path(ingredient) %>
+              </td>
+              <%= tag.td ingredient.category %>
+              <%= tag.td ingredient.updated_at %>
+              <%= tag.td ingredient.created_at %>
             </tr>
           <% end %>
         </tbody>
