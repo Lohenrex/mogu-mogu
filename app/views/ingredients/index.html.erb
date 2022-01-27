@@ -19,6 +19,7 @@
             <th>Category</th>
             <th>Updated at</th>
             <th>Created at</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -30,6 +31,9 @@
               <%= tag.td ingredient.category %>
               <%= tag.td ingredient.updated_at %>
               <%= tag.td ingredient.created_at %>
+              <td>
+                <%= button_to "Destroy this ingredient", ingredient, method: :delete, class: "delete is-danger", data: { confirm: "Are you REALLY sure?" } %>
+              </td>
             </tr>
           <% end %>
         </tbody>
