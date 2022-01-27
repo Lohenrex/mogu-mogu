@@ -3,6 +3,8 @@
 Rails.application.routes.draw do
   devise_for :users
   root "home#index"
-  resources :ingredients
-  resources :users, only: %i[index edit update destroy]
+  resources :appliances, except: %i[show]
+  resources :ingredients, except: %i[show]
+  resources :ingredient_categories, except: %i[show]
+  resources :users, except: %i[show new create]
 end
