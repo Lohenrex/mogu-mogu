@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class IngredientCategoriesController < ApplicationController
-  before_action :set_ingredient_category, only: %i[ edit update destroy ]
+  before_action :set_ingredient_category, only: %i[edit update destroy]
 
   # GET /ingredient_categories or /ingredient_categories.json
   def index
@@ -12,8 +14,7 @@ class IngredientCategoriesController < ApplicationController
   end
 
   # GET /ingredient_categories/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /ingredient_categories
   def create
@@ -28,7 +29,6 @@ class IngredientCategoriesController < ApplicationController
 
   # PATCH/PUT /ingredient_categories/1 or /ingredient_categories/1.json
   def update
-
     if @ingredient_category.update(ingredient_category_params)
       redirect_to ingredient_category_url(@ingredient_category), notice: "Ingredient category was successfully updated."
     else
@@ -44,13 +44,14 @@ class IngredientCategoriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_ingredient_category
-      @ingredient_category = IngredientCategory.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def ingredient_category_params
-      params.require(:ingredient_category).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_ingredient_category
+    @ingredient_category = IngredientCategory.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def ingredient_category_params
+    params.require(:ingredient_category).permit(:name)
+  end
 end
