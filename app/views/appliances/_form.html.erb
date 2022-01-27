@@ -1,0 +1,25 @@
+<%= form_with(model: appliance) do |form| %>
+  <% if appliance.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(appliance.errors.count, "error") %> prohibited this appliance from being saved:</h2>
+
+      <ul>
+        <% appliance.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name , class: "label" %>
+    <div class="control">
+      <%= form.text_field :name, autofocus: true, autocomplete: "name", class: "input is-medium" %>
+    </div>
+  </div>
+
+  <div class="actions has-text-right">
+    <%= link_to "Back to appliances", appliances_path, class: "button is-link" %>
+    <%= form.submit "Update", class: "button is-primary is-outlined" %>
+  </div>
+<% end %>

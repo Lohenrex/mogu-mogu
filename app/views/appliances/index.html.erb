@@ -1,0 +1,42 @@
+<div class="column">
+  <h3 class="title has-text-white-ter has-text-right">
+    Appliances
+  </h3>
+  <hr class="login-hr">
+  <p class="subtitle has-text-white-ter has-text-right">
+    We already have <%= Appliance.count %> appliances!
+  </p>
+  <div class="block">
+    <%= link_to "New appliance", new_appliance_path, class: "button is-success" %>
+  </div>
+
+  <div class="columns">
+    <div class="column box">
+      <table class="table is-striped is-hoverable has-text-centered is-fullwidth">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Updated at</th>
+            <th>Created at</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @appliances.each do |appliance| %>
+            <tr>
+              <td class="has-text-primary">
+                <%= link_to appliance.name, edit_appliance_path(appliance) %>
+              </td>
+              <%= tag.td appliance.updated_at %>
+              <%= tag.td appliance.created_at %>
+              <td>
+                <%= button_to "Destroy this appliance", appliance, method: :delete, class: "delete is-danger", data: { confirm: "Are you REALLY sure?" } %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
