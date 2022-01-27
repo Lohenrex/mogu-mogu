@@ -1,92 +1,14 @@
-
-
-
-
-<section class="hero is-primary is-fullheight">
-  <div class="hero-head">
-    <nav class="navbar navbar">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="/">
-          <span class="icon title">
-            <i class="fas fa-pastafarianism"></i>
-          </span>
-          <span class="title">mogumogu</span>
-        </a>
-        <span class="navbar-burger burger" data-target="navbarMenu">
-          <span>
-          </span>
-          <span>
-          </span>
-          <span>
-          </span>
-        </span>
-      </div>
-      <div id="navbarMenu" class="navbar-menu">
-        <div class="navbar-end">
-
-          <a href="/inventory" class="navbar-item">
-            <span class="icon">
-              <i class="fas fa-cloud-meatball"></i>
-            </span>
-            My inventory
-          </a>
-
-          <span class="navbar-item">
-            <a href="<%= edit_user_registration_path %>">
-              <span>Hi, <i class="fas fa-user"></i> <%= current_user.name %>
-              </span>
-            </a>
-          </span>
-
-          <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">
-              <span class="icon" title="Admin tools">
-                <i class="fas fa-tools"></i>
-              </span>
-            </a>
-
-            <div class="navbar-dropdown has-text-black">
-              <a class="navbar-item" href="<%= users_path %>">
-                Users
-              </a>
-              <hr class="navbar-divider">
-              <div class="navbar-item has-text-primary has-text-weight-semibold">
-                Recipes & stuff
-              </div>
-
-              <a class="navbar-item" href="<%= ingredients_path %>">
-                Ingredients
-              </a>
-              <a class="navbar-item" href="#">
-                Recipes
-              </a>
-            </div>
-          </div>
-
-          <span class="navbar-item">
-            <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: 'button is-dark' %>
-          </span>
-
-        </div>
-      </div>
-    </nav>
+<div class="column">
+  <h3 class="title has-text-white-ter has-text-right">New ingredient
+  </h3>
+  <div class="block">
+    <%= link_to "New ingredient", new_ingredient_path, class: "button is-success" %>
   </div>
-  <div class="hero-body">    
-    <div class="container">
-      <div class="column">
-        <h3 class="title has-text-white-ter has-text-right">New ingredient
-        </h3>
-        <div class="block">
-          <%= link_to "New ingredient", new_ingredient_path, class: "button is-success" %>
-        </div>
 
-        <div class="columns">
-          <div class="column box">
-            <%= render "form", ingredient: @ingredient %>
-          </div>
-        </div>
-
-      </div>
+  <div class="columns">
+    <div class="column box">
+      <%= render "form", ingredient: @ingredient %>
     </div>
   </div>
-</section>
+
+</div>

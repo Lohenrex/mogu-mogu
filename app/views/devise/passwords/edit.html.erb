@@ -1,54 +1,36 @@
-<section class="hero is-primary is-fullheight">
-  <div class="hero-head">
-    <nav class="navbar navbar">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="/">
-          <span class="icon title">
-            <i class="fas fa-pastafarianism"></i>
-          </span>
-          <span class="title">mogumogu</span>
-        </a>
-      </div>
-    </nav>
-  </div>
-  <div class="hero-body">
-    <div class="container has-text-centered">
-      <div class="column is-4 is-offset-4">
-        <h3 class="title has-text-white-ter">Change your password
-        </h3>
-        <hr class="login-hr">
-        <p class="subtitle has-text-white-ter">Make sure to choose a really hard one
-        </p>
-        <div class="box">
-          <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-            <%= render "devise/shared/error_messages", resource: resource %>
-            <%= f.hidden_field :reset_password_token %>
-            
-            <div class="field">
-              <%= f.label :password %>
-              <div class="control">
-                <%= f.password_field :password, autofocus: true, autocomplete: "new-password", placeholder: "New password", class: "input is-medium" %>
-                <% if @minimum_password_length %>
-                  <br />
-                  <em><%= @minimum_password_length %> characters minimum</em>
-                <% end %>
-              </div>
-            </div>
-            
-            <div class="field">
-              <%= f.label :password_confirmation %>
-              <div class="control">
-                <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "New password", class: "input is-medium" %>
-              </div>
-            </div>
-
-            <div class="actions">
-              <%= f.submit "Change my password", class: "button is-primary is-outlined" %>
-            </div>
+<div class="column is-4 is-offset-4 has-text-centered">
+  <h3 class="title has-text-white-ter">Change your password
+  </h3>
+  <hr class="login-hr">
+  <p class="subtitle has-text-white-ter">Make sure to choose a really hard one
+  </p>
+  <div class="box">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <%= f.hidden_field :reset_password_token %>
+      
+      <div class="field">
+        <%= f.label :password %>
+        <div class="control">
+          <%= f.password_field :password, autofocus: true, autocomplete: "new-password", placeholder: "New password", class: "input is-medium" %>
+          <% if @minimum_password_length %>
+            <br />
+            <em><%= @minimum_password_length %> characters minimum</em>
           <% end %>
         </div>
-
       </div>
-    </div>
+      
+      <div class="field">
+        <%= f.label :password_confirmation %>
+        <div class="control">
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "New password", class: "input is-medium" %>
+        </div>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Change my password", class: "button is-primary is-outlined" %>
+      </div>
+    <% end %>
   </div>
-</section>
+
+</div>

@@ -14,8 +14,15 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <section class="hero is-primary is-fullheight">
+      <%= render "layouts/navbar" %>
+      <div class="hero-body">    
+        <div class="container">
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+          <%= yield %>
+        </div>
+      </div>
+    </section>
   </body>
 </html>
