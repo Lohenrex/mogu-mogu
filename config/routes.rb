@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   root "home#index"
   resources :ingredients, except: %i[show]
   resources :ingredient_categories, except: %i[show]
+  resources :recipe_categories, except: %i[show]
   resources :users, except: %i[show new create]
 end
