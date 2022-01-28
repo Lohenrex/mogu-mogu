@@ -1,13 +1,13 @@
 <div class="column">
   <h3 class="title has-text-white-ter has-text-right">
-    Ingredients
+    Appliances
   </h3>
   <hr class="login-hr">
   <p class="subtitle has-text-white-ter has-text-right">
-    <%= "We already have #{@ingredients.length} ingredients!" %>
+    <%= "We already have #{@appliances.length} appliances!" %>
   </p>
   <div class="block">
-    <%= link_to "New ingredient", new_ingredient_path, class: "button is-success" %>
+    <%= link_to "New appliance", new_appliance_path, class: "button is-success" %>
   </div>
 
   <div class="columns">
@@ -16,23 +16,21 @@
         <thead>
           <tr>
             <th>Name</th>
-            <th>Category</th>
             <th>Updated at</th>
             <th>Created at</th>
             <th>Delete</th>
           </tr>
         </thead>
         <tbody>
-          <% @ingredients.each do |ingredient| %>
+          <% @appliances.each do |appliance| %>
             <tr>
               <td class="has-text-primary">
-                <%= link_to ingredient.name, edit_ingredient_path(ingredient) %>
+                <%= link_to appliance.name, edit_appliance_path(appliance) %>
               </td>
-              <%= tag.td ingredient.category %>
-              <%= tag.td ingredient.updated_at %>
-              <%= tag.td ingredient.created_at %>
+              <%= tag.td appliance.updated_at %>
+              <%= tag.td appliance.created_at %>
               <td>
-                <%= button_to "Destroy this ingredient", ingredient, method: :delete, class: "delete is-danger", data: { confirm: "Are you REALLY sure?" } %>
+                <%= button_to "Destroy this appliance", appliance, method: :delete, class: "delete is-danger", data: { confirm: "Are you REALLY sure?" } %>
               </td>
             </tr>
           <% end %>
