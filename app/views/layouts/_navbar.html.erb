@@ -33,26 +33,28 @@
             <% end %>
           </span>
 
-          <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">
-              <span class="icon" title="Admin tools">
-                <i class="fas fa-tools"></i>
-              </span>
-            </a>
+          <% if current_user.admin? %>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">
+                <span class="icon" title="Admin tools">
+                  <i class="fas fa-tools"></i>
+                </span>
+              </a>
 
-            <div class="navbar-dropdown has-text-black">
-              <%= link_to "Users", users_path, class: "navbar-item" %>
-              <hr class="navbar-divider">
-              <div class="navbar-item has-text-primary has-text-weight-semibold">
-                Recipes & stuff
+              <div class="navbar-dropdown has-text-black">
+                <%= link_to "Users", users_path, class: "navbar-item" %>
+                <hr class="navbar-divider">
+                <div class="navbar-item has-text-primary has-text-weight-semibold">
+                  Recipes & stuff
+                </div>
+                <%= link_to "Ingredients", ingredients_path, class: "navbar-item" %>
+                <%= link_to "Ingredient categories", ingredient_categories_path, class: "navbar-item" %>
+                <%= link_to "Appliances", appliances_path, class: "navbar-item" %>
+                <%= link_to "Recipe categories", recipe_categories_path, class: "navbar-item" %>
+                <%= link_to "Recipes", "#", class: "navbar-item" %>
               </div>
-              <%= link_to "Ingredients", ingredients_path, class: "navbar-item" %>
-              <%= link_to "Ingredient categories", ingredient_categories_path, class: "navbar-item" %>
-              <%= link_to "Appliances", appliances_path, class: "navbar-item" %>
-              <%= link_to "Recipe categories", recipe_categories_path, class: "navbar-item" %>
-              <%= link_to "Recipes", "#", class: "navbar-item" %>
             </div>
-          </div>
+          <% end %>
 
           <span class="navbar-item">
             <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: 'button is-dark' %>
