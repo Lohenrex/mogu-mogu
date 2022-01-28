@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_25_182117) do
+ActiveRecord::Schema.define(version: 2022_01_28_223158) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "appliances", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "ingredient_categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "ingredients", force: :cascade do |t|
     t.string "name", null: false
@@ -30,13 +42,10 @@ ActiveRecord::Schema.define(version: 2022_01_25_182117) do
     t.index ["user_id", "ingredient_id"], name: "index_ingredients_users_on_user_id_and_ingredient_id"
   end
 
-  create_table "inventories", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "ingredient_id", null: false
+  create_table "recipe_categories", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["ingredient_id"], name: "index_inventories_on_ingredient_id"
-    t.index ["user_id"], name: "index_inventories_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -59,6 +68,4 @@ ActiveRecord::Schema.define(version: 2022_01_25_182117) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "inventories", "ingredients"
-  add_foreign_key "inventories", "users"
 end
