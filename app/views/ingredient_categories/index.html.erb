@@ -4,7 +4,7 @@
   </h3>
   <hr class="login-hr">
   <p class="subtitle has-text-white-ter has-text-right">
-    We already have <%= @ingredient_categories.length %> ingredient categories!
+    <%= "We already have #{@ingredient_categories.length} ingredient categories!" %>
   </p>
   <div class="block">
     <%= link_to "New ingredient category", new_ingredient_category_path, class: "button is-success" %>
