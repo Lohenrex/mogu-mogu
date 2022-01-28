@@ -1,13 +1,13 @@
 <div class="column">
   <h3 class="title has-text-white-ter has-text-right">
-    Ingredients
+    Ingredient categories
   </h3>
   <hr class="login-hr">
   <p class="subtitle has-text-white-ter has-text-right">
-    <%= "We already have #{@ingredients.length} ingredients!" %>
+    <%= "We already have #{@ingredient_categories.length} ingredient categories!" %>
   </p>
   <div class="block">
-    <%= link_to "New ingredient", new_ingredient_path, class: "button is-success" %>
+    <%= link_to "New ingredient category", new_ingredient_category_path, class: "button is-success" %>
   </div>
 
   <div class="columns">
@@ -16,23 +16,21 @@
         <thead>
           <tr>
             <th>Name</th>
-            <th>Category</th>
             <th>Updated at</th>
             <th>Created at</th>
             <th>Delete</th>
           </tr>
         </thead>
         <tbody>
-          <% @ingredients.each do |ingredient| %>
+          <% @ingredient_categories.each do |ingredient_category| %>
             <tr>
               <td class="has-text-primary">
-                <%= link_to ingredient.name, edit_ingredient_path(ingredient) %>
+                <%= link_to ingredient_category.name, edit_ingredient_category_path(ingredient_category) %>
               </td>
-              <%= tag.td ingredient.category %>
-              <%= tag.td ingredient.updated_at %>
-              <%= tag.td ingredient.created_at %>
+              <%= tag.td ingredient_category.updated_at %>
+              <%= tag.td ingredient_category.created_at %>
               <td>
-                <%= button_to "Destroy this ingredient", ingredient, method: :delete, class: "delete is-danger", data: { confirm: "Are you REALLY sure?" } %>
+                <%= button_to "Destroy this ingredient category", ingredient_category, method: :delete, class: "delete is-danger", data: { confirm: "Are you REALLY sure?" } %>
               </td>
             </tr>
           <% end %>
@@ -40,5 +38,4 @@
       </table>
     </div>
   </div>
-
 </div>
