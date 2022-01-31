@@ -49,11 +49,10 @@ class InventoriesController < ApplicationController
   end
 
   def ingredients_not_in_inventory
-    if @user.inventory.empty?
-      Ingredient.all
-    else
-      Ingredient.where.not(id: @user.inventory.pluck(:ingredient_id))
-    end
+    inventory = @user.inventory
+    return Ingredient.all if inventory.nil?
+
+    Ingredient.where.not(id: inventory.pluck(:ingredient_id))
   end
 
   def ingredients_for_select
