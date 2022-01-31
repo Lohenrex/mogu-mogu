@@ -8,5 +8,7 @@ class User < ApplicationRecord
 
   validates :name, uniqueness: true
 
+  has_many :inventory
+
   enum :role, { admin: 1, premium: 2, free: 3 }
 end

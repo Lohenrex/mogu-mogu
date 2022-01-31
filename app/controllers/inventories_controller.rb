@@ -2,10 +2,11 @@
 
 class InventoriesController < ApplicationController
   before_action :set_inventory, only: %i[destroy]
+  before_action :set_user
 
   # GET /inventories
   def index
-    @inventory = Inventory.where(user_id: current_user.id)
+    @inventory = @user.inventory
   end
 
   # GET /inventories/new
@@ -38,17 +39,20 @@ class InventoriesController < ApplicationController
     @inventory = Inventory.find(params[:id])
   end
 
+  def set_user
+    @user = User.find(current_user.id)
+  end
+
   # Only allow a list of trusted parameters through.
   def inventory_params
     params.require(:inventory).permit(:user_id, :ingredient_id)
   end
 
   def ingredients_not_in_inventory
-    inventory = Inventory.where(user_id: current_user.id)
-    if inventory.empty?
+    if @user.inventory.empty?
       Ingredient.all
     else
-      Ingredient.where.not(id: inventory.pluck(:ingredient_id))
+      Ingredient.where.not(id: @user.inventory.pluck(:ingredient_id))
     end
   end
 
