@@ -6,7 +6,7 @@ class InventoriesController < ApplicationController
 
   # GET /inventories
   def index
-    @inventory = @user.inventory
+    @inventory = @user.inventory.includes(:ingredient)
   end
 
   # GET /inventories/new
