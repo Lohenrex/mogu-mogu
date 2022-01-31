@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class InventoriesController < ApplicationController
   before_action :set_inventory, only: %i[destroy]
 
@@ -30,26 +32,27 @@ class InventoriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_inventory
-      @inventory = Inventory.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def inventory_params
-      params.require(:inventory).permit(:user_id, :ingredient_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_inventory
+    @inventory = Inventory.find(params[:id])
+  end
 
-    def ingredients_not_in_inventory
-      inventory = Inventory.where(user_id: current_user.id)
-      if inventory.empty?
-        return Ingredient.all
-      else
-        return Ingredient.where.not(id: inventory.pluck(:ingredient_id))
-      end
-    end
+  # Only allow a list of trusted parameters through.
+  def inventory_params
+    params.require(:inventory).permit(:user_id, :ingredient_id)
+  end
 
-    def ingredients_for_select
-      ingredients_not_in_inventory.sort_by(&:name).map{ |ingredient| [ingredient.name, ingredient.id] }
+  def ingredients_not_in_inventory
+    inventory = Inventory.where(user_id: current_user.id)
+    if inventory.empty?
+      Ingredient.all
+    else
+      Ingredient.where.not(id: inventory.pluck(:ingredient_id))
     end
+  end
+
+  def ingredients_for_select
+    ingredients_not_in_inventory.sort_by(&:name).map { |ingredient| [ingredient.name, ingredient.id] }
+  end
 end
