@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   resources :recipe_categories, except: %i[show]
   resources :appliances, except: %i[show]
   resources :users, except: %i[show new create]
+  resources :inventories
 end
