@@ -2,7 +2,7 @@
 
 class InventoriesController < ApplicationController
   before_action :set_inventory, only: %i[destroy]
-  before_action :set_user
+  before_action :set_user, only: %i[index new]
 
   # GET /inventories
   def index
