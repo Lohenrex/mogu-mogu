@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module RecipesHelper
-
   def categories_for_select(categories)
     categories.sort_by(&:name).map { |category| [category.name, category.id] }
   end

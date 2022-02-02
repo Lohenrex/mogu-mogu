@@ -16,7 +16,7 @@ class RecipesController < ApplicationController
 
   # GET /recipes/new
   def new
-    @recipe = Recipe.new 
+    @recipe = Recipe.new
   end
 
   # GET /recipes/1/edit
@@ -71,22 +71,16 @@ class RecipesController < ApplicationController
   # Only allow a list of trusted parameters through.
   def recipe_params
     step_param = params[:recipe][:step]
-    filtered_params = params.require(:recipe).permit(:name, 
-                                                     :description,
-                                                     :picture,
-                                                     :ingredients,
-                                                     :appliances,
-                                                     :steps,
-                                                     :recipe_category_id,
-                                                     :steps_video,
-                                                     :user_id)
+    filtered_params = params.require(:recipe).permit(:name, :description, :picture,
+                                                     :ingredients, :appliances, :steps,
+                                                     :recipe_category_id, :steps_video, :user_id)
 
     filtered_params.merge(step: sanitize_steps(step_param))
-    
+
     filtered_params
   end
 
   def sanitize_steps(param)
-    param.split("\n").reject(&:blank?) unless param.blank?
+    param.split("\n").compact_blank if param.present?
   end
 end
