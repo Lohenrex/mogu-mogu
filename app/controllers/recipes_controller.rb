@@ -24,7 +24,7 @@ class RecipesController < ApplicationController
 
   # POST /recipes
   def create
-    @recipe = Recipe.new(recipe_params.merge(steps: sanitize_steps, user_id: current_user.id))
+    @recipe = Recipe.new(recipe_params.merge(user_id: current_user.id))
 
     if @recipe.save
       redirect_to recipe_url(@recipe), notice: "Recipe was successfully created."
@@ -35,7 +35,7 @@ class RecipesController < ApplicationController
 
   # PATCH/PUT /recipes/1
   def update
-    if @recipe.update(recipe_params.merge(steps: sanitize_steps, user_id: current_user.id))
+    if @recipe.update(recipe_params.merge(user_id: current_user.id))
       redirect_to recipe_url(@recipe), notice: "Recipe was successfully updated."
     else
       render :edit, status: :unprocessable_entity
@@ -70,12 +70,12 @@ class RecipesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def recipe_params
-    step_param = params[:recipe][:step]
+    step_param = params[:recipe][:steps]
     filtered_params = params.require(:recipe).permit(:name, :description, :picture,
                                                      :ingredients, :appliances, :steps,
                                                      :recipe_category_id, :steps_video, :user_id)
 
-    filtered_params.merge(step: sanitize_steps(step_param))
+    filtered_params.merge(steps: sanitize_steps(step_param))
 
     filtered_params
   end
