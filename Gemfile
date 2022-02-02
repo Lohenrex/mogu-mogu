@@ -43,6 +43,7 @@ group :development, :test do
 end
 
 group :development do
+  gem "byebug"
   gem "rack-mini-profiler"
   gem "web-console"
 
@@ -56,5 +57,3 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
-
-gem "byebug", "~> 11.1", groups: %i[development test]

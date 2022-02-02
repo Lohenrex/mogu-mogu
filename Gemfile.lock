@@ -277,7 +277,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
-  byebug (~> 11.1)
+  byebug
   capybara
   cssbundling-rails
   debug
