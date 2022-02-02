@@ -50,6 +50,41 @@ Ingredient.create!([{
 },{
   name: "sugar",
   category: "spices"
+},{
+  name: "chocolate",
+  category: "other"
+},{
+  name: "breadcrumbs",
+  category: "other"
 }])
 
 p "Created #{Ingredient.count} ingredients"
+
+
+Appliance.destroy_all
+
+Appliance.create!([{
+  name: "oven"
+},{
+  name: "microwave oven"
+},{
+  name: "saucepan"
+},{
+  name: "stove"
+},{
+  name: "whisk"
+},{
+  name: "mixing bowl"
+},{
+  name: "mixer"
+},{
+  name: "baking paper"
+},{
+  name: "aluminum foil"
+},{
+  name: "cake mold"
+},{
+  name: "spatula"
+}])
+
+p "Created #{Appliance.count} appliances"
