@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :recipes
   devise_for :users
   root "home#index"
+  resources :recipes
+  
   scope "/admin" do
     resources :ingredients, except: %i[show]
     resources :ingredient_categories, except: %i[show]
