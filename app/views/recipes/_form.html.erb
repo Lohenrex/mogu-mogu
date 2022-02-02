@@ -1,0 +1,147 @@
+<%= form_with(model: recipe) do |form| %>
+  <% if recipe.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+
+      <ul>
+        <% recipe.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :ingredients %>
+  <%= form.hidden_field :appliances %>
+  <%= form.hidden_field :steps %>
+
+  <div class="field">
+    <%= form.label :name, class: "label" %>
+    <div class="control">
+      <%= form.text_field :name, autofocus: true, placeholder: "name", class: "input is-large is-primary" %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :steps, class: "label" %>
+    <div class="control">
+      <div class="file is-primary">
+        <label class="file-label">
+          <%= form.file_field :picture, class: "file-input" %>
+          <span class="file-cta">
+            <span class="file-icon">
+              <i class="fas fa-upload"></i>
+            </span>
+            <span class="file-label">
+              Upload a picture of the results!
+            </span>
+          </span>
+          <span class="file-name"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :recipe_category_id, class: "label" %>
+    <div class="control">
+      <div class="select is-primary">
+        <%= form.select :recipe_category_id, categories_for_select(@recipe_categories), prompt: "Choose a category" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :description, class: "label" %>
+    <div class="control">
+      <%= form.text_field :description, placeholder: "Describe your new recipe...", class: "input"  %>
+    </div>
+  </div>
+
+  <hr class="login-hr">
+
+  <h3 class="subtitle has-text-primary">Ingredients</h3>
+
+  <div class="field has-addons has-addons-centered">
+    <div class="control">
+      <div class="select is-primary">
+        <%= form.select "ingredient_select", ingredients_for_select(@ingredients) %>
+      </div>      
+    </div>
+    <div class="control">
+      <%= form.number_field "ingredient_amount", placeholder: "Amount", class: "input" %>
+    </div>
+    <div class="control">
+      <div class="select is-primary">
+        <%= form.select "ingredient_measure", Ingredient::MEASURES %>
+      </div>      
+    </div>
+    <div class="control">
+      <%= form.button "Add", class: "button is-success", id: "ingredient_adder", type: "button" %>
+    </div>
+  </div>
+
+  <h4 class="subtitle has-text-primary-dark">Required ingredients</h4>
+
+  <div class="field is-grouped is-grouped-multiline" id="ingredient_pool"></div>
+
+  <hr class="login-hr">
+
+  <h3 class="subtitle has-text-primary">Appliances</h3>
+
+  <div class="field has-addons has-addons-centered">
+    <div class="control">
+      <div class="select is-primary">
+        <%= form.select "appliance", appliances_for_select(@appliances) %>
+      </div>      
+    </div>
+    <div class="control">
+      <%= form.button "Add", class: "button is-success", id: "appliance_adder", type: "button" %>
+    </div>
+  </div>
+
+  <h4 class="subtitle has-text-primary-dark">Required appliances</h4>
+
+  <div class="field is-grouped is-grouped-multiline" id="appliance_pool"></div>
+
+  <hr class="login-hr">
+
+  <h3 class="subtitle has-text-primary">Steps</h3>
+
+  <div class="field">
+    <%= form.label :steps_video, class: "label" %>
+    <div class="control">
+      <div class="file is-primary">
+        <label class="file-label">
+          <%= form.file_field :steps_video, class: "file-input" %>
+          <span class="file-cta">
+            <span class="file-icon">
+              <i class="fas fa-upload"></i>
+            </span>
+            <span class="file-label">
+              Upload a video showing the procedure (optional)
+            </span>
+          </span>
+          <span class="file-name"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :steps, class: "label" %>
+    <div class="control">
+      <%= form.text_area :steps, placeholder: "Start typing the steps...", class: "input"  %>
+    </div>
+  </div>
+
+  <div class="field is-grouped is-grouped-right">
+    <div class="control">
+      <%= form.submit "Submit", class: "button is-primary" %>
+    </div>
+    <div class="control">
+      <%= link_to "Cancel", recipes_path, class: "button is-primary is-light" %>
+    </div>
+  </div>
+<% end %>
