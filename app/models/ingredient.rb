@@ -3,7 +3,7 @@
 class Ingredient < ApplicationRecord
   validates :name, uniqueness: true
 
-  MEASURES = %w[cup oz ml fl oz
+  MEASURES = %w[cup oz ml floz
                 g kg piece leaf
                 pinch lb tsp tbsp].freeze
 
