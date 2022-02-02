@@ -6,8 +6,8 @@ const ingredientAmount = document.querySelector("#recipe_ingredient_amount");
 const ingredientMeasure = document.querySelector("#recipe_ingredient_measure");
 const applianceInput = document.querySelector("#recipe_appliance");
 
-var selectedIngredients = [];
-var selectedAppliances = [];
+let selectedIngredients = [];
+let selectedAppliances = [];
 
 fileInput.onchange = () => {
   if (fileInput.files.length > 0) {
