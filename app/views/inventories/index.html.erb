@@ -1,0 +1,26 @@
+<div class="column">
+  <h3 class="title has-text-white-ter has-text-right">
+    My inventory
+  </h3>
+  <hr class="login-hr">
+  <p class="subtitle has-text-white-ter has-text-right">
+    <%= "There are currently #{@inventory.length} ingredients in my inventory!" %>
+  </p>
+  <div class="block">
+    <%= link_to "Add ingredient", new_inventory_path, class: "button is-success" %>
+  </div>
+
+  <div class="columns">
+    <div class="column box">
+      <div class="tags">
+        <% @inventory.each do |item| %>
+          <%= tag.span "", class: "tag is-success" do %>
+            <%= item.ingredient.name.capitalize %>
+            <%= button_to "Destroy this ingredient", item, method: :delete, class: "delete is-small", data: { confirm: "Are you sure?" } %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>

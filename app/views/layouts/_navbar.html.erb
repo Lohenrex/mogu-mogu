@@ -18,7 +18,16 @@
         <% if user_signed_in? %>
 
           <span class="navbar-item">
-            <%= link_to("#") do %>
+            <%= link_to(new_recipe_path) do %>
+              <span class="icon">
+                <i class="fas fa-plus-circle"></i>
+              </span>
+              New recipe
+            <% end %>
+          </span>
+
+          <span class="navbar-item">
+            <%= link_to(inventories_path) do %>
               <span class="icon">
                 <i class="fas fa-cloud-meatball"></i>
               </span>
