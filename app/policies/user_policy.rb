@@ -11,15 +11,7 @@ class UserPolicy < ApplicationPolicy
     end
   end
 
-  def new?
-    admin?
-  end
-
-  def create?
-    admin?
-  end
-
-  def show?
+  def index?
     admin?
   end
 
