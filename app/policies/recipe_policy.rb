@@ -9,11 +9,27 @@ class RecipePolicy < ApplicationPolicy
     end
   end
 
+  def new?
+    member?
+  end
+
+  def create?
+    member?
+  end
+
+  def show?
+    member?
+  end
+
+  def edit?
+    admin_or_owner?
+  end
+
   def update?
-    user.admin_or_owner?
+    admin_or_owner?
   end
 
   def destroy?
-    user.admin_or_owner?
+    admin_or_owner?
   end
 end

@@ -70,7 +70,7 @@ class ApplicationPolicy
   end
 
   def owner?
-    resource.user == user
+    record.user == user
   end
 
   def free?
