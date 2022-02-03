@@ -1,5 +1,41 @@
 <div class="column is-6 is-offset-3 has-text-centered">
   <h1 class="title">
-    You will see a welcome screen here... eventually
+    Welcome back, <%= current_user.name %>
   </h1>
+</div>
+
+<div class="tile is-ancestor">
+  <div class="tile is-vertical">
+    <div class="tile">
+      <div class="tile is-parent is-vertical">
+        <article class="tile is-child notification has-text-centered">
+          <%= link_to "My recipes", recipes_path, class: "title has-text-primary" %>
+        </article>
+        <article class="tile is-child notification is-dark has-text-centered">
+          <%= link_to "My inventory", inventories_path, class: "title has-text-white" %>
+        </article>
+      </div>
+    </div>
+  </div>
+  <div class="tile is-parent is-8">
+    <article class="tile is-child notification is-dark">
+      <div class="content">
+        <p class="title has-text-primary">The Oracle</p>
+        <p class="subtitle">Don't know what to cook next? Have a look at these suggestions</p>
+        <div class="content">
+          <!-- Content -->
+        </div>
+      </div>
+    </article>
+  </div>
+</div>
+
+<div class="tile is-parent">
+  <article class="tile is-child notification is-white">
+    <p class="title has-text-primary">Community recipes</p>
+    <p class="subtitle has-text-dark">Browse recipes. Get inspired. Or not.</p>
+    <div class="content">
+      <!-- Content -->
+    </div>
+  </article>
 </div>
