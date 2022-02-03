@@ -1,0 +1,89 @@
+<div class="card">
+  <div class="card-image">
+    <figure class="image is-3by1">
+      <%= image_tag @recipe.picture if @recipe.picture.attached? %>
+    </figure>
+  </div>
+  <div class="card-content">
+    <div class="media">
+      <div class="media-content">
+        <div class="level">
+          <div class="level-left is-8">
+            <div class="level-item">
+              <h2 class="title has-text-primary">
+                <%= @recipe.name %>
+              </h2>
+            </div>
+            <div class="level-item">
+              <p class="subtitle has-text-grey-dark">
+                <%= @recipe.recipe_category.name %>
+              </p>
+            </div>
+          </div>
+          <div class="level-right is-4 has-text-right">
+            <div class="level-item">
+              <h3 class="has-text-primary">
+                by: <%= @recipe.user.name %>
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="level">
+          <div class="level-left is-8">
+            <div class="level-item">
+              <p class="subtitle is-6 has-text-dark">
+                <%= @recipe.description %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="columns">
+        <div class="column is-8">
+          <h4 class="title has-text-primary">Ingredients</h4>
+          <ul>
+            <% @ingredients_json.each do |ingredient| %>
+              <%= tag.li "#{ingredient["name"].titleize}: #{ingredient["quantity"]} #{ingredient["quantity"].to_i > 1 ? ingredient["measure"].pluralize : ingredient["measure"]}" %>
+            <% end %>
+          </ul>
+        </div>
+        <div class="column is-4">
+          <h4 class="title has-text-primary">Appliances</h4>
+          <ul>
+            <% @recipe.appliances.each do |appliance| %>
+              <%= tag.li appliance %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <div class="column">
+        <h4 class="title has-text-primary">Steps</h4>
+        <ul>
+          <% @recipe.steps.each do |step| %>
+            <%= tag.label "", class: "checkbox" do %>
+              <%= check_box step, "enabled" %>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+      <div class="column">
+        <h4 class="title has-text-primary">Steps video</h4>
+        <% if @recipe.steps_video.attached? %>
+          <%= tag.figure class: "image is-3by1" do %>
+            <%= image_tag @recipe.steps_video %>
+          <% end %>
+        <% else %>
+          <%= tag.p "This video is unavailable" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <footer class="card-footer">
+    <%= link_to "Back", :back, class: "button card-footer-item is-link" %>
+    <%= link_to "Edit this recipe", edit_recipe_path(@recipe), class: "button card-footer-item is-success" %>
+    <%= button_to "Destroy this recipe", @recipe, method: :delete, class: "button card-footer-item is-danger" %>
+  </footer>
+</div>
