@@ -29,7 +29,7 @@ gem "turbo-rails"
 gem "jbuilder"
 # gem "redis", "~> 4.0"
 # gem "kredis"
-# gem "image_processing", "~> 1.2"
+gem "image_processing"
 # gem "bcrypt", "~> 3.1.7"
 
 group :development, :test do
