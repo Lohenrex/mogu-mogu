@@ -5,7 +5,7 @@ class IngredientsController < ApplicationController
 
   # GET /ingredients
   def index
-    @ingredients = Ingredient.all
+    @ingredients = authorize Ingredient.all
   end
 
   # GET /ingredients/1
@@ -13,7 +13,7 @@ class IngredientsController < ApplicationController
 
   # GET /ingredients/new
   def new
-    @ingredient = Ingredient.new
+    @ingredient = authorize Ingredient.new
   end
 
   # GET /ingredients/1/edit
@@ -21,7 +21,7 @@ class IngredientsController < ApplicationController
 
   # POST /ingredients
   def create
-    @ingredient = Ingredient.new(ingredient_params)
+    @ingredient = authorize Ingredient.new(ingredient_params)
 
     if @ingredient.save
       redirect_to ingredients_url, notice: "Ingredient was successfully created."
@@ -50,7 +50,7 @@ class IngredientsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_ingredient
-    @ingredient = Ingredient.find(params[:id])
+    @ingredient = authorize Ingredient.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
