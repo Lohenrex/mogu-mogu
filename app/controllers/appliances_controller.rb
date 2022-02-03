@@ -2,15 +2,16 @@
 
 class AppliancesController < ApplicationController
   before_action :set_appliance, only: %i[edit update destroy]
+  before_action :set_authorization
 
   # GET /appliances
   def index
-    @appliances = authorize Appliance.all
+    @appliances = Appliance.all
   end
 
   # GET /appliances/new
   def new
-    @appliance = authorize Appliance.new
+    @appliance = Appliance.new
   end
 
   # GET /appliances/1/edit
@@ -18,7 +19,7 @@ class AppliancesController < ApplicationController
 
   # POST /appliances
   def create
-    @appliance = authorize Appliance.new(appliance_params)
+    @appliance = Appliance.new(appliance_params)
 
     if @appliance.save
       redirect_to appliances_url, notice: "Appliance was successfully created."
@@ -47,7 +48,11 @@ class AppliancesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_appliance
-    @appliance = authorize Appliance.find(params[:id])
+    @appliance = Appliance.find(params[:id])
+  end
+
+  def set_authorization
+    authorize Appliance
   end
 
   # Only allow a list of trusted parameters through.

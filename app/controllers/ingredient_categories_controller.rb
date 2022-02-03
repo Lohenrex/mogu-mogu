@@ -2,15 +2,16 @@
 
 class IngredientCategoriesController < ApplicationController
   before_action :set_ingredient_category, only: %i[edit update destroy]
+  before_action :set_authorization
 
   # GET /ingredient_categories or /ingredient_categories.json
   def index
-    @ingredient_categories = authorize IngredientCategory.all
+    @ingredient_categories = IngredientCategory.all
   end
 
   # GET /ingredient_categories/new
   def new
-    @ingredient_category = authorize IngredientCategory.new
+    @ingredient_category = IngredientCategory.new
   end
 
   # GET /ingredient_categories/1/edit
@@ -18,7 +19,7 @@ class IngredientCategoriesController < ApplicationController
 
   # POST /ingredient_categories
   def create
-    @ingredient_category = authorize IngredientCategory.new(ingredient_category_params)
+    @ingredient_category = IngredientCategory.new(ingredient_category_params)
 
     if @ingredient_category.save
       redirect_to ingredient_categories_url, notice: "Ingredient category was successfully created."
@@ -47,7 +48,11 @@ class IngredientCategoriesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_ingredient_category
-    @ingredient_category = authorize IngredientCategory.find(params[:id])
+    @ingredient_category = IngredientCategory.find(params[:id])
+  end
+
+  def set_authorization
+    authorize IngredientCategory
   end
 
   # Only allow a list of trusted parameters through.

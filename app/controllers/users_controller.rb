@@ -2,10 +2,11 @@
 
 class UsersController < ApplicationController
   before_action :set_user, only: %i[edit update destroy]
+  before_action :set_authorization
 
   # GET /users
   def index
-    @users = authorize User.all
+    @users = User.all
   end
 
   # GET /users/1/edit
@@ -30,7 +31,11 @@ class UsersController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_user
-    @user = authorize User.find(params[:id])
+    @user = User.find(params[:id])
+  end
+
+  def set_authorization
+    authorize User
   end
 
   # Only allow a list of trusted parameters through.

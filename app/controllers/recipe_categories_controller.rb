@@ -2,15 +2,16 @@
 
 class RecipeCategoriesController < ApplicationController
   before_action :set_recipe_category, only: %i[edit update destroy]
+  before_action :set_authorization
 
   # GET /recipe_categories
   def index
-    @recipe_categories = authorize RecipeCategory.all
+    @recipe_categories = RecipeCategory.all
   end
 
   # GET /recipe_categories/new
   def new
-    @recipe_category = authorize RecipeCategory.new
+    @recipe_category = RecipeCategory.new
   end
 
   # GET /recipe_categories/1/edit
@@ -18,7 +19,7 @@ class RecipeCategoriesController < ApplicationController
 
   # POST /recipe_categories
   def create
-    @recipe_category = authorize RecipeCategory.new(recipe_category_params)
+    @recipe_category = RecipeCategory.new(recipe_category_params)
 
     if @recipe_category.save
       redirect_to recipe_categories_url, notice: "Recipe category was successfully created."
@@ -47,7 +48,11 @@ class RecipeCategoriesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_recipe_category
-    @recipe_category = authorize RecipeCategory.find(params[:id])
+    @recipe_category = RecipeCategory.find(params[:id])
+  end
+
+  def set_authorization
+    authorize RecipeCategory
   end
 
   # Only allow a list of trusted parameters through.
