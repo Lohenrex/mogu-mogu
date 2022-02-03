@@ -1,4 +1,5 @@
-const fileInput = document.querySelector('.file input[type=file]');
+const pictureInput = document.querySelector('#recipe_picture');
+const stepsVideoInput = document.querySelector('#recipe_steps_video');
 const ingredientAdder = document.querySelector('#ingredient_adder');
 const applianceAdder = document.querySelector('#appliance_adder');
 const ingredientSelect = document.querySelector("#recipe_ingredient_select");
@@ -10,10 +11,17 @@ const theForm = document.querySelector("#recipesForm");
 let selectedIngredients = [];
 let selectedAppliances = [];
 
-fileInput.onchange = () => {
-  if (fileInput.files.length > 0) {
-    const fileName = document.querySelector('.file .file-name');
-    fileName.textContent = fileInput.files[0].name;
+pictureInput.onchange = () => {
+  if (pictureInput.files.length > 0) {
+    const fileName = pictureInput.parentNode.querySelector(".file-name");
+    fileName.textContent = pictureInput.files[0].name;
+  }
+}
+
+stepsVideoInput.onchange = () => {
+  if (stepsVideoInput.files.length > 0) {
+    const fileName = stepsVideoInput.parentNode.querySelector(".file-name");
+    fileName.textContent = stepsVideoInput.files[0].name;
   }
 }
 
