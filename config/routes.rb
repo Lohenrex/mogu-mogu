@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   root "home#index"
   resources :recipes
-  
+
   scope "/admin" do
     resources :ingredients, except: %i[show]
     resources :ingredient_categories, except: %i[show]
