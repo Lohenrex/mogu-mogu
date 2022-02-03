@@ -27,6 +27,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params.merge(user_id: current_user.id))
 
     if @recipe.save
+      @recipe.picture.attach(params[:picture])
       redirect_to recipe_url(@recipe), notice: "Recipe was successfully created."
     else
       render :new, status: :unprocessable_entity
@@ -36,6 +37,7 @@ class RecipesController < ApplicationController
   # PATCH/PUT /recipes/1
   def update
     if @recipe.update(recipe_params.merge(user_id: current_user.id))
+      @recipe.picture.attach(params[:picture])
       redirect_to recipe_url(@recipe), notice: "Recipe was successfully updated."
     else
       render :edit, status: :unprocessable_entity
