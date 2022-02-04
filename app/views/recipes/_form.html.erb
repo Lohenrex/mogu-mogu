@@ -1,4 +1,4 @@
-<%= form_with(model: recipe) do |form| %>
+<%= form_with(model: recipe, id: "recipesForm") do |form| %>
   <% if recipe.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
@@ -92,7 +92,7 @@
   <div class="field has-addons has-addons-centered">
     <div class="control">
       <div class="select is-primary">
-        <%= form.select "appliance", appliances_for_select(@appliances) %>
+        <%= form.select "appliance_selector", appliances_for_select(@appliances) %>
       </div>      
     </div>
     <div class="control">

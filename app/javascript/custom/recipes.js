@@ -1,18 +1,27 @@
-const fileInput = document.querySelector('.file input[type=file]');
+const pictureInput = document.querySelector('#recipe_picture');
+const stepsVideoInput = document.querySelector('#recipe_steps_video');
 const ingredientAdder = document.querySelector('#ingredient_adder');
 const applianceAdder = document.querySelector('#appliance_adder');
 const ingredientSelect = document.querySelector("#recipe_ingredient_select");
 const ingredientAmount = document.querySelector("#recipe_ingredient_amount");
 const ingredientMeasure = document.querySelector("#recipe_ingredient_measure");
-const applianceInput = document.querySelector("#recipe_appliance");
+const applianceInput = document.querySelector("#recipe_appliance_selector");
+const theForm = document.querySelector("#recipesForm");
 
 let selectedIngredients = [];
 let selectedAppliances = [];
 
-fileInput.onchange = () => {
-  if (fileInput.files.length > 0) {
-    const fileName = document.querySelector('.file .file-name');
-    fileName.textContent = fileInput.files[0].name;
+pictureInput.onchange = () => {
+  if (pictureInput.files.length > 0) {
+    const fileName = pictureInput.parentNode.querySelector(".file-name");
+    fileName.textContent = pictureInput.files[0].name;
+  }
+}
+
+stepsVideoInput.onchange = () => {
+  if (stepsVideoInput.files.length > 0) {
+    const fileName = stepsVideoInput.parentNode.querySelector(".file-name");
+    fileName.textContent = stepsVideoInput.files[0].name;
   }
 }
 
@@ -26,11 +35,16 @@ applianceAdder.addEventListener("click", (e) => {
   appendApplianceToView();
 });
 
-const appendIngredientToArray = () => {
-  let newIngredient = `{ "${ingredientSelect.value}": {"quantity": ${ingredientAmount.value}, "measure": "${ingredientMeasure.value}"} }`;
+theForm.addEventListener("submit", (e) => {
+  let ingredientJson = JSON.stringify({needed: selectedIngredients});
+  document.querySelector("#recipe_ingredients").value = ingredientJson;  
+  document.querySelector("#recipe_appliances").value = selectedAppliances;
+  return true;
+});
 
-  selectedIngredients.push(newIngredient);
-  document.querySelector("#recipe_ingredients").value = selectedIngredients;
+const appendIngredientToArray = () => {
+  let newIngredient = {name:ingredientSelect.value, quantity:ingredientAmount.value, measure:ingredientMeasure.value };
+  selectedIngredients.push(newIngredient);  
 }
 
 const appendIngredientToView = () => {
@@ -52,7 +66,6 @@ const appendIngredientToView = () => {
 const appendApplianceToArray = () => {
   let newAppliance = applianceInput.value;
   selectedAppliances.push(newAppliance);
-  document.querySelector("#recipe_appliances").value = selectedAppliances;
 }
 
 const appendApplianceToView = () => {
