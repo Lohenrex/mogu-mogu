@@ -12,4 +12,8 @@ module RecipesHelper
   def appliances_for_select(appliances)
     appliances.sort_by(&:name).map { |appliance| [appliance.name.capitalize, appliance.name] }
   end
+
+  def parsed_ingredients(recipe)
+    JSON.parse(recipe.ingredients)["needed"]
+  end
 end
