@@ -54,20 +54,23 @@
           <h4 class="title has-text-primary">Appliances</h4>
           <ul>
             <% @recipe.appliances.each do |appliance| %>
-              <%= tag.li appliance %>
+              <%= tag.li appliance.titleize %>
             <% end %>
           </ul>
         </div>
       </div>
       <div class="column">
         <h4 class="title has-text-primary">Steps</h4>
-        <ul>
+        <%= tag.ol do %>
           <% @recipe.steps.each do |step| %>
-            <%= tag.label "", class: "checkbox" do %>
-              <%= check_box step, "enabled" %>
+            <%= tag.li do %>
+              <%= tag.label "", class: "checkbox" do %>
+                <input type="checkbox">
+                <%= step.capitalize %>
+              <% end %>
             <% end %>
           <% end %>
-        </ul>
+        <% end %>
       </div>
       <div class="column">
         <h4 class="title has-text-primary">Steps video</h4>
