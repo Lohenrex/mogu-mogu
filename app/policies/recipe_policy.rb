@@ -1,13 +1,8 @@
 # frozen_string_literal: true
 
 class RecipePolicy < ApplicationPolicy
-  class Scope < Scope
     def resolve
-      if user.admin?
-        scope.all
-      else
-        scope.where(user_id: user.id)
-      end
+      user.admin? ? scope.all : scope.where(user_id: user.id)
     end
   end
 
