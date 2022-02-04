@@ -2,6 +2,7 @@
 
 class AppliancesController < ApplicationController
   before_action :set_appliance, only: %i[edit update destroy]
+  before_action :set_authorization
 
   # GET /appliances
   def index
@@ -48,6 +49,10 @@ class AppliancesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_appliance
     @appliance = Appliance.find(params[:id])
+  end
+
+  def set_authorization
+    authorize Appliance
   end
 
   # Only allow a list of trusted parameters through.

@@ -2,6 +2,7 @@
 
 class UsersController < ApplicationController
   before_action :set_user, only: %i[edit update destroy]
+  before_action :set_authorization
 
   # GET /users
   def index
@@ -31,6 +32,10 @@ class UsersController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def set_authorization
+    authorize User
   end
 
   # Only allow a list of trusted parameters through.
