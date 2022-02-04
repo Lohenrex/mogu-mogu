@@ -6,6 +6,33 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+IngredientCategory.destroy_all
+
+IngredientCategory.create!([{
+  name: "dairy"
+},{
+  name: "flour"
+},{
+  name: "meats"
+},{
+  name: "poultry"
+},{
+  name: "liquids"
+},{
+  name: "alcohol"
+},{
+  name: "fruits"
+},{
+  name: "vegetables"
+},{
+  name: "spices"
+},{
+  name: "other"
+}])
+
+p "Created #{IngredientCategory.count} ingredient categories"
+
+
 Ingredient.destroy_all
 
 Ingredient.create!([{
@@ -88,3 +115,28 @@ Appliance.create!([{
 }])
 
 p "Created #{Appliance.count} appliances"
+
+
+RecipeCategory.destroy_all
+
+RecipeCategory.create!([{
+  name: "bakery"
+},{
+  name: "mexican"
+},{
+  name: "italian"
+},{
+  name: "confectionery"
+},{
+  name: "burgers & sandwiches"
+},{
+  name: "salads"
+},{
+  name: "japanese"
+},{
+  name: "chinese"
+},{
+  name: "seafood"
+}])
+
+p "Created #{RecipeCategory.count} recipe categories"
