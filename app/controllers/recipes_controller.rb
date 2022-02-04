@@ -29,6 +29,7 @@ class RecipesController < ApplicationController
 
     if @recipe.save
       @recipe.picture.attach(params[:picture])
+      @recipe.steps_video.attach(params[:steps_video])
       redirect_to recipe_url(@recipe), notice: "Recipe was successfully created."
     else
       render :new, status: :unprocessable_entity
@@ -39,6 +40,7 @@ class RecipesController < ApplicationController
   def update
     if @recipe.update(recipe_params.merge(user_id: current_user.id))
       @recipe.picture.attach(params[:picture])
+      @recipe.steps_video.attach(params[:steps_video])
       redirect_to recipe_url(@recipe), notice: "Recipe was successfully updated."
     else
       render :edit, status: :unprocessable_entity
