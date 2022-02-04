@@ -28,7 +28,6 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params.merge(user_id: current_user.id))
 
     if @recipe.save
-      attach_media
       redirect_to recipe_url(@recipe), notice: "Recipe was successfully created."
     else
       render :new, status: :unprocessable_entity
@@ -38,7 +37,6 @@ class RecipesController < ApplicationController
   # PATCH/PUT /recipes/1
   def update
     if @recipe.update(recipe_params.merge(user_id: current_user.id))
-      attach_media
       redirect_to recipe_url(@recipe), notice: "Recipe was successfully updated."
     else
       render :edit, status: :unprocessable_entity
@@ -94,10 +92,5 @@ class RecipesController < ApplicationController
 
   def sanitize_appliances(param)
     param.split(",").compact_blank if param.present?
-  end
-
-  def attach_media
-    @recipe.picture.attach(params[:picture])
-    @recipe.steps_video.attach(params[:steps_video])
   end
 end
