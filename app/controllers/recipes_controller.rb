@@ -28,8 +28,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params.merge(user_id: current_user.id))
 
     if @recipe.save
-      @recipe.picture.attach(params[:picture])
-      @recipe.steps_video.attach(params[:steps_video])
+      attach_media
       redirect_to recipe_url(@recipe), notice: "Recipe was successfully created."
     else
       render :new, status: :unprocessable_entity
@@ -39,8 +38,7 @@ class RecipesController < ApplicationController
   # PATCH/PUT /recipes/1
   def update
     if @recipe.update(recipe_params.merge(user_id: current_user.id))
-      @recipe.picture.attach(params[:picture])
-      @recipe.steps_video.attach(params[:steps_video])
+      attach_media
       redirect_to recipe_url(@recipe), notice: "Recipe was successfully updated."
     else
       render :edit, status: :unprocessable_entity
@@ -81,7 +79,6 @@ class RecipesController < ApplicationController
   # Only allow a list of trusted parameters through.
   def recipe_params
     step_param = params[:recipe][:steps]
-    ingredient_param = params[:recipe][:ingredients]
     appliance_param = params[:recipe][:appliances]
     filtered_params = params.require(:recipe).permit(:name, :description, :picture,
                                                      :ingredients, :appliances, :steps,
@@ -97,5 +94,10 @@ class RecipesController < ApplicationController
 
   def sanitize_appliances(param)
     param.split(",").compact_blank if param.present?
+  end
+
+  def attach_media
+    @recipe.picture.attach(params[:picture])
+    @recipe.steps_video.attach(params[:steps_video])
   end
 end
