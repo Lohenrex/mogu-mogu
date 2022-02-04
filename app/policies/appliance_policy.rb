@@ -3,11 +3,9 @@
 class AppliancePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      if user.admin?
-        scope.all
-      else
-        false
-      end
+      return false unless user.admin?
+
+      scope.all
     end
   end
 
