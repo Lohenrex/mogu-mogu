@@ -3,6 +3,8 @@
 class ApplicationPolicy
   class Scope
     def initialize(user, scope)
+      raise Pundit::NotAuthorizedError, "must be logged in" unless user
+
       @user = user
       @scope = scope
     end
@@ -19,7 +21,9 @@ class ApplicationPolicy
   attr_reader :user, :record
 
   def initialize(user, record)
-    @user = user
+    raise Pundit::NotAuthorizedError, "must be logged in" unless user
+
+    @user   = user
     @record = record
   end
 
@@ -66,7 +70,7 @@ class ApplicationPolicy
   end
 
   def owner?
-    resource.user == user
+    record.user == user
   end
 
   def free?

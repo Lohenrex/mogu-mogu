@@ -83,7 +83,7 @@
   </div>
   <footer class="card-footer">
     <%= link_to "Back", :back, class: "button card-footer-item is-link" %>
-    <%= link_to "Edit this recipe", edit_recipe_path(@recipe), class: "button card-footer-item is-success" %>
-    <%= button_to "Destroy this recipe", @recipe, method: :delete, class: "button card-footer-item is-danger" %>
+    <%= link_to "Edit this recipe", edit_recipe_path(@recipe), class: "button card-footer-item is-success" if policy(@recipe).update? %>
+    <%= button_to "Destroy this recipe", @recipe, method: :delete, class: "button card-footer-item is-danger" if policy(@recipe).destroy? %>
   </footer>
 </div>

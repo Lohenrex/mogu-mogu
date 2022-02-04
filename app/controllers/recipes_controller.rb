@@ -9,7 +9,7 @@ class RecipesController < ApplicationController
 
   # GET /recipes or /recipes.json
   def index
-    @recipes = Recipe.all
+    @recipes = policy_scope(Recipe)
   end
 
   # GET /recipes/1
@@ -56,7 +56,7 @@ class RecipesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_recipe
-    @recipe = Recipe.find(params[:id])
+    @recipe = authorize Recipe.find(params[:id])
   end
 
   def set_recipe_categories

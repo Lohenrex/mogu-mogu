@@ -2,6 +2,7 @@
 
 class RecipeCategoriesController < ApplicationController
   before_action :set_recipe_category, only: %i[edit update destroy]
+  before_action :set_authorization
 
   # GET /recipe_categories
   def index
@@ -48,6 +49,10 @@ class RecipeCategoriesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_recipe_category
     @recipe_category = RecipeCategory.find(params[:id])
+  end
+
+  def set_authorization
+    authorize RecipeCategory
   end
 
   # Only allow a list of trusted parameters through.

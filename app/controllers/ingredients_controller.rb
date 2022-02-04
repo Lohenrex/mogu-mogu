@@ -2,6 +2,7 @@
 
 class IngredientsController < ApplicationController
   before_action :set_ingredient, only: %i[edit update destroy]
+  before_action :set_authorization
 
   # GET /ingredients
   def index
@@ -51,6 +52,10 @@ class IngredientsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_ingredient
     @ingredient = Ingredient.find(params[:id])
+  end
+
+  def set_authorization
+    authorize Ingredient
   end
 
   # Only allow a list of trusted parameters through.
