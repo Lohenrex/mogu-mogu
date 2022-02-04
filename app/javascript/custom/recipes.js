@@ -5,7 +5,7 @@ const applianceAdder = document.querySelector('#appliance_adder');
 const ingredientSelect = document.querySelector("#recipe_ingredient_select");
 const ingredientAmount = document.querySelector("#recipe_ingredient_amount");
 const ingredientMeasure = document.querySelector("#recipe_ingredient_measure");
-const applianceInput = document.querySelector("#recipe_appliance");
+const applianceInput = document.querySelector("#recipe_appliance_selector");
 const theForm = document.querySelector("#recipesForm");
 
 let selectedIngredients = [];

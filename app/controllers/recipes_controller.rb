@@ -86,8 +86,8 @@ class RecipesController < ApplicationController
                                                      :recipe_category_id, :steps_video, :user_id)
 
     filtered_params.merge(steps: sanitize_steps(step_param),
-                          ingredients: sanitize_appliances(appliance_param),
-                          appliances: sanitize_ingredients(ingredient_param))
+                          appliances: sanitize_appliances(appliance_param),
+                          ingredients: sanitize_ingredients(ingredient_param))
 
     filtered_params
   end
