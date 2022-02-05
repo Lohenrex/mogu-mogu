@@ -1,47 +1,44 @@
-<div id="<%= dom_id recipe %>">
-  <p>
-    <strong>Name:</strong>
-    <%= recipe.name %>
-  </p>
+<div class="column is-4">
+  <div class="card">
+    <div class="card-image">
+      <figure class="image">
+        <%= image_tag recipe.picture if recipe.picture.attached? %>
+      </figure>
+    </div>
+    <div class="card-content">
+      <div class="media">
+        <div class="media-content">
+          <div class="block">
+            <h2 class="title has-text-primary">
+              <%= recipe.name %>
+            </h2>
+            <p class="subtitle has-text-grey-dark">
+              <%= recipe.recipe_category.name %>
+            </p>
+          </div>
+          <div class="block">
+            <p class="subtitle is-6 has-text-dark">
+              <%= recipe.description %>
+            </p>
+          </div>
+          <div class="block">
+            <h4 class="subtitle has-text-primary">Ingredients</h4>
+            <div class="tags">
+              <% parsed_ingredients(recipe).each do |ingredient| %>
+                <%= tag.span "", class: "tag is-success" do %>
+                  <%= ingredient["name"].titleize %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <p>
-    <strong>Description:</strong>
-    <%= recipe.description %>
-  </p>
-
-  <p>
-    <strong>Picture:</strong>
-    <%= recipe.picture %>
-  </p>
-
-  <p>
-    <strong>Ingredients:</strong>
-    <%= recipe.ingredients %>
-  </p>
-
-  <p>
-    <strong>Appliances:</strong>
-    <%= recipe.appliances %>
-  </p>
-
-  <p>
-    <strong>Steps:</strong>
-    <%= recipe.steps %>
-  </p>
-
-  <p>
-    <strong>Recipe category:</strong>
-    <%= recipe.recipe_category_id %>
-  </p>
-
-  <p>
-    <strong>Steps video:</strong>
-    <%= recipe.steps_video %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= recipe.user_id %>
-  </p>
-
+    </div>
+    <footer class="card-footer">
+      <%= link_to "Details", recipe, class: "button card-footer-item is-primary" %>
+      <%= link_to "Edit", edit_recipe_path(recipe), class: "button card-footer-item  is-primary is-light" if policy(recipe).update? %>
+      <%= button_to "Destroy", recipe, method: :delete, class: "button card-footer-item is-dark has-text-danger" if policy(recipe).destroy? %>
+    </footer>
+  </div>
 </div>
