@@ -10,4 +10,6 @@ class Recipe < ApplicationRecord
   has_one_attached :picture do |attachable|
     attachable.variant :thumb, resize_to_limit: [100, 100]
   end
+
+  scope :get_recipe_which_has_ingredient, ->(ingredient) { where("recipes.ingredients->'needed' @> ?", [{ name: ingredient }].to_json) }
 end
