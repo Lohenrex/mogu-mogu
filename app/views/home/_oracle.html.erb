@@ -1,10 +1,9 @@
 <%= tag.h4 "We couldn't find a recipe that matches your inventory. :(", class: "subtitle has-text-centered" unless @doable_recipes.length > 0 %>
 
-<!-- Start Carousel -->
-<div id="oracle-carousel" class="carousel">
+<div class="columns is-multiline">
   <% @doable_recipes.each do |recipe| %>
-    <%= tag.div class: "item-#{recipe.id}", style: "margin: 2.5rem;" do %>
-      <div class="card is-6 is-offset-3">
+    <div class="column is-4">
+      <div class="card">
         <div class="card-image">
           <figure class="image is-2by1">
             <%= image_tag recipe.picture if recipe.picture.attached? %>
@@ -50,7 +49,6 @@
           <%= link_to "Read more...", recipe, class: "button card-footer-item is-primary" %>
         </footer>
       </div>
-    <% end %>
+    </div>
   <% end %>
 </div>
-<!-- End Carousel -->
