@@ -1,4 +1,4 @@
-<%= tag.h4 "We couldn't find a recipe that matches your inventory. :(", class: "subtitle has-text-centered" unless @doable_recipes.length > 0 %>
+<%= tag.h4 "We couldn't find a recipe that matches your inventory. :(", class: "subtitle has-text-centered" if @doable_recipes.empty? %>
 
 <div class="columns is-multiline">
   <% @doable_recipes.each do |recipe| %>
