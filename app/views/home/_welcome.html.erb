@@ -6,7 +6,7 @@
 
 <div class="tile is-parent">
   <article class="tile is-child notification has-text-centered">
-    <%= link_to "My recipes", recipes_path, class: "title has-text-primary" %>
+    <%= link_to "My recipes", recipes_path(recipe_scope: "user"), class: "title has-text-primary" %>
   </article>
   <article class="tile is-child notification is-dark has-text-centered">
     <%= link_to "My inventory", inventories_path, class: "title has-text-white" %>

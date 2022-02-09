@@ -1,10 +1,10 @@
 <div class="column">
   <h3 class="title has-text-white-ter has-text-right">
-    My recipes
+    <%= "#{@recipe_scope == "user" ? "My recipes" : "Recipes"}" %>
   </h3>
   <hr class="login-hr">
   <p class="subtitle has-text-white-ter has-text-right">
-    <%= "I have already created #{@recipes.length} #{@recipes.length == 1 ? "recipe" : "recipe".pluralize}!" %>
+    <%= "#{@recipe_scope == "user" ? "I have" : "The community has"} already created #{@recipes.length} #{@recipes.length == 1 ? "recipe" : "recipe".pluralize}!" %>
   </p>
   <div class="block">
     <%= link_to "Create new recipe", new_recipe_path, class: "button is-success" %>

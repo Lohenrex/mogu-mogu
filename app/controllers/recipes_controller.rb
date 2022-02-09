@@ -9,7 +9,8 @@ class RecipesController < ApplicationController
 
   # GET /recipes or /recipes.json
   def index
-    @recipes = policy_scope(Recipe)
+    @recipe_scope = params[:recipe_scope]
+    @recipes = @recipe_scope == "user" ? current_user.recipes : Recipe.all
   end
 
   # GET /recipes/1
