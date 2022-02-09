@@ -16,9 +16,12 @@
                 <h2 class="title has-text-primary">
                   <%= recipe.name %>
                 </h2>
-                <p class="subtitle has-text-grey-dark">
+                <h5 class="has-text-primary subtitle" style="float: inline-end;">
+                  By: <%= recipe.user.name %>
+                </h5>
+                <h4 class="subtitle has-text-grey-dark">
                   <%= recipe.recipe_category.name %>
-                </p>
+                </h4>
               </div>
               <div class="block">
                 <p class="subtitle is-6 has-text-dark">
