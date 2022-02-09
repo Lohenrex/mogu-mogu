@@ -1,7 +1,7 @@
-<%= tag.h4 "We couldn't find a recipe that matches your inventory. :(", class: "subtitle has-text-centered" if @doable_recipes.empty? %>
+<%= tag.h4 "There are no recipes in our vault. D:", class: "subtitle has-text-centered" if @latest_recipes.empty? %>
 
 <div class="columns is-multiline">
-  <% @doable_recipes.each do |recipe| %>
+  <% @latest_recipes.each do |recipe| %>
     <div class="column is-4">
       <div class="card">
         <div class="card-image">
@@ -55,3 +55,7 @@
     </div>
   <% end %>
 </div>
+
+<%= tag.div class: "column is-4 is-offset-4 has-text-centered" do %>
+  <%= link_to "Browse recipes", recipes_path(recipe_scope: "all"), class: "button is-primary is-large" %>
+<% end %>
