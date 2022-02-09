@@ -9,8 +9,12 @@ class RecipesController < ApplicationController
 
   # GET /recipes or /recipes.json
   def index
-    @recipe_scope = params[:recipe_scope]
-    @recipes = @recipe_scope == "user" ? current_user.recipes : Recipe.all
+    if params[:is_searching].nil?
+      @recipe_scope = params[:recipe_scope]
+      @recipes = @recipe_scope == "user" ? current_user.recipes.order(updated_at: :desc) : Recipe.all.order(updated_at: :desc)
+    else
+      @recipes = filter_recipes(params[:search_by_ingredient].downcase)
+    end
   end
 
   # GET /recipes/1
@@ -99,5 +103,9 @@ class RecipesController < ApplicationController
 
   def sanitize_ingredients(param)
     JSON.parse(param)
+  end
+
+  def filter_recipes(ingredient)
+    Recipe.with_ingredient(ingredient)
   end
 end
