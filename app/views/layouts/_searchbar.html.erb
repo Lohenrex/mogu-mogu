@@ -1,0 +1,11 @@
+<%= form_tag "/recipes", method: "GET" do %>
+  <%= hidden_field_tag :is_searching, "searching" %>
+  <div class="field has-addons has-addons-centered">
+    <div class="control">
+      <%= text_field_tag :search_by_ingredient, params[:search_by_ingredient], class: "input is-medium is-rounded is-dark", placeholder: "Search by ingredient" %>
+    </div>
+    <div class="control">
+      <%= submit_tag "Search", class: "button is-medium is-rounded is-dark" %>
+    </div>
+  </div>
+<% end %>

@@ -15,6 +15,11 @@
     </div>
     <div id="navbarMenu" class="navbar-menu">
       <div class="navbar-end">
+        <span class="navbar-item">
+          <%= render "layouts/searchbar" %>
+        </span>
+      </div>
+      <div class="navbar-end">
         <% if user_signed_in? %>
 
           <span class="navbar-item">
