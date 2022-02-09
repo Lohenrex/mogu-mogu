@@ -1,0 +1,58 @@
+<%= tag.h4 "There are no recipes in our vault. D:", class: "subtitle has-text-centered" if @latest_recipes.empty? %>
+
+<div class="columns is-multiline">
+  <% @latest_recipes.each do |recipe| %>
+    <div class="column is-4">
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-2by1">
+            <%= image_tag recipe.picture if recipe.picture.attached? %>
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-content">
+              <div class="block">
+                <h2 class="title has-text-primary">
+                  <%= recipe.name %>
+                </h2>
+                <p class="subtitle has-text-grey-dark">
+                  <%= recipe.recipe_category.name %>
+                </p>
+              </div>
+              <div class="block">
+                <p class="subtitle is-6 has-text-dark">
+                  <%= recipe.description %>
+                </p>
+              </div>
+              <div class="block">
+                <h4 class="subtitle has-text-primary">Ingredients</h4>
+                <div class="tags">
+                  <% parsed_ingredients(recipe).each do |ingredient| %>
+                    <% if @user_ingredients.include?(ingredient["name"]) %>
+                      <%= tag.span "", class: "tag is-success" do %>
+                        <%= ingredient["name"].titleize %>
+                      <% end %>
+                    <% else %>
+                      <%= tag.span "", class: "tag is-warning" do %>
+                        <%= ingredient["name"].titleize %>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <footer class="card-footer">
+          <%= link_to "Read more...", recipe, class: "button card-footer-item is-primary" %>
+        </footer>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= tag.div class: "column is-4 is-offset-4 has-text-centered" do %>
+  <%= link_to "Browse recipes", recipes_path(recipe_scope: "all"), class: "button is-primary is-large" %>
+<% end %>

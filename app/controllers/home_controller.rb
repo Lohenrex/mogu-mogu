@@ -11,5 +11,7 @@ class HomeController < ApplicationController
     end.flatten.uniq
 
     @doable_recipes = Recipe.find(doable_recipes_ids)
+
+    @latest_recipes = Recipe.all.order(:updated_at).reverse_order.take(3)
   end
 end
