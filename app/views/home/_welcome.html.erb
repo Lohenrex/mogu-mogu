@@ -4,24 +4,30 @@
   </h1>
 </div>
 
-<div class="tile is-parent">
-  <article class="tile is-child notification has-text-centered">
-    <%= link_to "My recipes", recipes_path, class: "title has-text-primary" %>
-  </article>
-  <article class="tile is-child notification is-dark has-text-centered">
-    <%= link_to "My inventory", inventories_path, class: "title has-text-white" %>
-  </article>
-</div>
-<div class="tile is-parent">
-  <article class="tile is-child notification is-dark">
-    <div class="content">
-      <p class="title has-text-primary">The Oracle</p>
-      <p class="subtitle">Don't know what to cook next? Have a look at these suggestions</p>
-      <div class="content">
-        <%= render "oracle" %>
+<div class="tile is-ancestor">
+  <div class="tile is-vertical">
+    <div class="tile">
+      <div class="tile is-parent is-vertical">
+        <article class="tile is-child notification has-text-centered">
+          <%= link_to "My recipes", recipes_path, class: "title has-text-primary" %>
+        </article>
+        <article class="tile is-child notification is-dark has-text-centered">
+          <%= link_to "My inventory", inventories_path, class: "title has-text-white" %>
+        </article>
       </div>
     </div>
-  </article>
+  </div>
+  <div class="tile is-parent is-8">
+    <article class="tile is-child notification is-dark">
+      <div class="content">
+        <p class="title has-text-primary">The Oracle</p>
+        <p class="subtitle">Don't know what to cook next? Have a look at these suggestions</p>
+        <div class="content">
+          <!-- Content -->
+        </div>
+      </div>
+    </article>
+  </div>
 </div>
 
 <div class="tile is-parent">

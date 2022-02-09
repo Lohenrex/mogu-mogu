@@ -83,30 +83,6 @@ Ingredient.create!([{
 },{
   name: "breadcrumbs",
   category: "other"
-},{
-  name: "tomato",
-  category: "vegetables"
-},{
-  name: "lettuce",
-  category: "vegetables"
-},{
-  name: "cucumber",
-  category: "vegetables"
-},{
-  name: "olive",
-  category: "vegetables"
-},{
-  name: "back olive",
-  category: "vegetables"
-},{
-  name: "squash",
-  category: "vegetables"
-},{
-  name: "potato",
-  category: "vegetables"
-},{
-  name: "celery",
-  category: "vegetables"
 }])
 
 p "Created #{Ingredient.count} ingredients"

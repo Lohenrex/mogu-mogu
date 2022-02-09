@@ -14,6 +14,6 @@ module RecipesHelper
   end
 
   def parsed_ingredients(recipe)
-    recipe.ingredients["needed"]
+    JSON.parse(recipe.ingredients)["needed"]
   end
 end

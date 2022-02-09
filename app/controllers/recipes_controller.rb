@@ -70,22 +70,20 @@ class RecipesController < ApplicationController
   end
 
   def set_ingredients_json
-    @ingredients_json = @recipe.ingredients["needed"]
+    ingredients_param = @recipe.ingredients
+    @ingredients_json = JSON.parse(ingredients_param)["needed"]
   end
 
   # Only allow a list of trusted parameters through.
   def recipe_params
     step_param = params[:recipe][:steps]
     appliance_param = params[:recipe][:appliances]
-    ingredients_param = params[:recipe][:ingredients]
-
     filtered_params = params.require(:recipe).permit(:name, :description, :picture,
                                                      :ingredients, :appliances, :steps,
                                                      :recipe_category_id, :steps_video, :user_id)
 
     filtered_params.merge(steps: sanitize_steps(step_param),
-                          appliances: sanitize_appliances(appliance_param),
-                          ingredients: sanitize_ingredients(ingredients_param))
+                          appliances: sanitize_appliances(appliance_param))
   end
 
   def sanitize_steps(param)
@@ -94,9 +92,5 @@ class RecipesController < ApplicationController
 
   def sanitize_appliances(param)
     param.split(",").compact_blank if param.present?
-  end
-
-  def sanitize_ingredients(param)
-    JSON.parse(param)
   end
 end
