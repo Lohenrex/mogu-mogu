@@ -11,7 +11,11 @@ class RecipesController < ApplicationController
   def index
     if params[:is_searching].nil?
       @recipe_scope = params[:recipe_scope]
-      @recipes = @recipe_scope == "user" ? current_user.recipes.order(updated_at: :desc) : Recipe.all.order(updated_at: :desc)
+      @recipes = if @recipe_scope == "user"
+                   current_user.recipes.order(updated_at: :desc)
+                 else
+                   Recipe.all.order(updated_at: :desc)
+                 end
     else
       @recipes = filter_recipes(params[:search_by_ingredient].downcase)
     end
