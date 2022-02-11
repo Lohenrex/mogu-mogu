@@ -1,11 +1,15 @@
 <div class="column">
   <h3 class="title has-text-white-ter has-text-right">Edit recipe
   </h3>
-
   <div class="columns">
     <div class="column box">
+      <%= hidden_field_tag :current_recipe_path, "edit" %>
       <%= render "form", recipe: @recipe %>
     </div>
   </div>
-
 </div>
+
+<script type="text/javascript">
+  const currentAppliances = '<%= @recipe.appliances.join(",") %>'.split(",");
+  const currentIngredients = '<%= @recipe.ingredients.to_json.html_safe %>';
+</script>
