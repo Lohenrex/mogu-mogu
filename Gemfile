@@ -17,6 +17,7 @@ gem "devise"
 gem "figaro"
 gem "pundit"
 # Reduces boot times through caching; required in config/boot.rb
+gem "aws-sdk-s3", require: false
 gem "bootsnap", require: false
 
 gem "cssbundling-rails"
