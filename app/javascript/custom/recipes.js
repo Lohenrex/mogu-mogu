@@ -14,6 +14,8 @@ document.addEventListener("turbo:load", () => {
   let selectedIngredients = [];
   let selectedAppliances = [];
 
+  const deleteAppliance = (e) => { console.log(e)}
+
   const appendIngredientToArray = (newName, newAmount, newMeasure) => {
     let newIngredient = {name:newName, quantity:newAmount, measure:newMeasure };
     selectedIngredients.push(newIngredient);  
@@ -37,6 +39,37 @@ document.addEventListener("turbo:load", () => {
     });
   }
 
+  const appendApplianceToView = (newAppliance) => {
+    let spanNode = document.createElement("span");
+    let innerText = document.createTextNode(newAppliance);
+    let deleteButton = document.createElement("button");
+
+    deleteButton.setAttribute("type", "button");
+    deleteButton.setAttribute("id", `${newAppliance}_deleter`);
+    deleteButton.classList.add("delete", "is-small", "appliance-deleter");
+
+    spanNode.classList.add("tag", "is-success", "is-light", "box", "active-appliance");
+    spanNode.appendChild(innerText);
+    spanNode.appendChild(deleteButton);
+
+    document.getElementById("appliance_pool").appendChild(spanNode);
+  }
+
+  const appendIngredientToView = (newName, newAmount, newMeasure) => {
+    let spanNode = document.createElement("span");
+    let innerText = document.createTextNode(`${newName} ${newAmount} ${newMeasure}`);
+    let deleteButton = document.createElement("button");
+
+    deleteButton.setAttribute("type", "button");
+    deleteButton.setAttribute("id", `${newName}_deleter`);
+    deleteButton.classList.add("delete", "is-small", "ingredient-deleter");
+
+    spanNode.classList.add("tag", "is-success", "is-light", "box", "active-ingredient");
+    spanNode.appendChild(innerText);
+    spanNode.appendChild(deleteButton);
+
+    document.getElementById("ingredient_pool").appendChild(spanNode);
+  }
   if (pictureInput) {
     pictureInput.onchange = () => {
       if (pictureInput.files.length > 0) {
@@ -85,39 +118,25 @@ document.addEventListener("turbo:load", () => {
       loadIngredients();
     }
   }
+
+  // Handle appliances deletion
+  on('.active-appliance', 'click', '.appliance-deleter', event => {
+    const item = event.target;
+    let appliance2Delete = item.id.split("_deleter")[0];
+    selectedAppliances = selectedAppliances.filter(appliance => { return appliance !== appliance2Delete });
+    item.parentNode.parentNode.removeChild(item.parentNode);
+  });
+
+  // Handle ingredients deletion
+  on('.active-ingredient', 'click', '.ingredient-deleter', event => {
+    const item = event.target;
+    let ingredient2Delete = item.id.split("_deleter")[0];
+    selectedIngredients = selectedIngredients.filter(ingredient => { return ingredient !== ingredient2Delete });
+    item.parentNode.parentNode.removeChild(item.parentNode);
+  });
+
 });
 
-const appendIngredientToView = (newName, newAmount, newMeasure) => {
-  let spanNode = document.createElement("span");
-  let innerText = document.createTextNode(`${newName} ${newAmount} ${newMeasure}`);
-  let deleteButton = document.createElement("button");
-
-  deleteButton.setAttribute("type", "button");
-  deleteButton.setAttribute("id", `${newName}_deleter`);
-  deleteButton.classList.add("delete", "is-small", "ingredientDeleter");
-
-  spanNode.classList.add("tag", "is-success", "is-light", "box", "active-ingredient");
-  spanNode.appendChild(innerText);
-  spanNode.appendChild(deleteButton);
-
-  document.getElementById("ingredient_pool").appendChild(spanNode);
-}
-
-const appendApplianceToView = (newAppliance) => {
-  let spanNode = document.createElement("span");
-  let innerText = document.createTextNode(newAppliance);
-  let deleteButton = document.createElement("button");
-
-  deleteButton.setAttribute("type", "button");
-  deleteButton.setAttribute("id", `${newAppliance}_deleter`);
-  deleteButton.classList.add("delete", "is-small", "applianceDeleter");
-
-  spanNode.classList.add("tag", "is-success", "is-light", "box", "active-appliance");
-  spanNode.appendChild(innerText);
-  spanNode.appendChild(deleteButton);
-
-  document.getElementById("appliance_pool").appendChild(spanNode);
-}
 
 const sanitizeSteps = () => {
   let stepsTextArea = document.querySelector("#recipe_steps");
@@ -127,4 +146,15 @@ const sanitizeSteps = () => {
     stepsTextArea.value = JSON.parse(stepsTextArea.value).join("\n");
   }
   stepsTextArea.style.height = "auto";
+}
+
+const on = (selector, eventType, childSelector, eventHandler) => {
+  const elements = document.querySelectorAll(selector);
+  for (element of elements) {
+    element.addEventListener(eventType, eventOnElement => {
+      if (eventOnElement.target.matches(childSelector)) {
+        eventHandler(eventOnElement);
+      }
+    });
+  }
 }
