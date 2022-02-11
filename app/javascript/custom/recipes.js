@@ -14,8 +14,6 @@ document.addEventListener("turbo:load", () => {
   let selectedIngredients = [];
   let selectedAppliances = [];
 
-  const deleteAppliance = (e) => { console.log(e)}
-
   const appendIngredientToArray = (newName, newAmount, newMeasure) => {
     let newIngredient = {name:newName, quantity:newAmount, measure:newMeasure };
     selectedIngredients.push(newIngredient);  
